@@ -1,0 +1,38 @@
+<% if(project != null) { %>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><%- project.name %></li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <img src="/uploads/<%- project.image %>" class="img-fluid sticky-top" style="top: 20px;" alt="<%- project.name %>" loading="lazy" > 
+        </div>
+       <div class="col-12 col-md-8 ">
+           <div class="row">
+               <div class="col-12"><h1><%- project.name %></h1></div>
+               <div class="col-12 mb-4"><i class="bi bi-tag"></i>  <%- project.category %></div>
+               <div class="col-12" style="white-space: pre-line;">
+                  <h4>Project Description</h4>
+                  <%- project.description %>
+               </div>
+           </div>
+          
+           <div class="row pt-4">
+               <div class="col-12">
+                   <h4>Technology</h4>
+                   <ul class="list-group list-group-flush">
+                       <% project.technology.forEach(function(technology, index){ %> 
+                       <li class="list-group-item"><%= technology %></li>
+                       <% }) %>
+                   </ul>
+               </div>
+           </div>
+
+       </div>
+    </div>
+<% } else { %>
+  <p>No Project Found. </p>
+<% } %>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%= typeof title != 'undefined' ? title: 'Projecto' %> </title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inspiration&family=Merienda&family=Quintessential&family=Roboto:wght@100&family=Rubik:wght@300;500&family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class= "container-xxl px-md-5 bg-white shadow-lg" >
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+              <img src="/img/logo.svg" width="229" height="68" alt="Projects " srcset="">
+            </a>
+            <div class="col-md-3 text-end">
+              <form method="POST" action="/search" >
+                  <input type="search" name="searchTerm" class="form-control" placeholder="Search..." aria-label="Search">
+              </form>
+            </div>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-1">
+              <li><a href="/" class="nav-link px-2 link-dark">Home</a></li>
+              <li><a href="/about" class="nav-link px-2 link-dark">About </a></li>
+              <li><a href="/submit-project" class="nav-link px-2 link-dark"> Add Project</a></li>
+              <li><a href="/contact" class="nav-link px-2 link-dark">FAQs</a></li>
+              <li><a href="#" class="nav-link px-2 link-dark">contact</a></li>
+            </ul>
+      
+           
+          </header>
+
+
+        <main>
+            <%- body -%>
+        </main>
+         
+        <footer class="py-5">
+            <p>Build by Eternal Crew</p>
+        </footer>
+    </div>
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>

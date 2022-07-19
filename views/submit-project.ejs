@@ -1,0 +1,99 @@
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Uplode Your Project</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead">Share your amazing Projects with thousands of web developers accross the world. Fill our form to get started.</p>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center">
+  
+    <% if(infoSubmitObj != '') { %>
+      <div class="col-8 alert alert-success" role="alert">
+        <%= infoSubmitObj %>
+      </div>
+    <% } %>
+  
+    <% if(infoErrorsObj != '') { %>
+      <div class="col-8 alert alert-danger" role="alert">
+        <%= infoErrorsObj[0].message %>
+      </div>
+    <% } %>
+  
+    <div class="col-8">
+  
+      <form action="/submit-project" enctype="multipart/form-data" method="POST">
+      
+        <div class="row g-3">
+  
+          <div class="col-12">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" id="email" class="form-control">
+          </div>
+  
+          <div class="col-12">
+            <label for="name" class="form-label">Title</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+          </div>
+          
+          <div class="col-12">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" id="description" class="form-control" cols="30" rows="4"></textarea>
+          </div>
+  
+          <div class="col-12">
+            <label for="name" class="form-label">Technology</label><br>
+            <small>Example: languages/ tols </small>
+            <div class="ingredientList">
+              <div class="ingredeintDiv mb-1">
+                <input type="text" name="ingredients" class="form-control">
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-12">
+            <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Technology</button>
+          </div>
+  <!-- IoT , App Devlopment , 3D Printing , COA , Web Devlopment , DS   -->
+          <div class="col-12">
+            <label for="category">Select Category</label>
+            <select class="form-select form-control" name="category" aria-label="Category">
+              <option selected>Select Category</option>
+              <option value="IoT">IoT</option>
+              <option value="App Devlopment "> App Devlopment</option>
+              <option value="3D Printing">3D Printing</option>
+              <option value="COA">COA</option>
+              <option value="Web Devlopment">Web Devlopment</option>
+              <option value="DS">DS</option>
+            </select>
+          </div>
+<!-- Domain domain: {
+
+        type: String,
+        enum: ["Hardware","Software"],
+        required: 'This fild is required.'
+    }, -->
+          <div class="col-12">
+            <label for="domain">Select Domain</label>
+            <select class="form-select form-control" name="domains" aria-label="Category">
+              <option selected>Select Category</option>
+              <option value="Hardware">Hardware</option>
+              <option value="Software">Software</option>
+              
+            </select>
+          </div>
+  
+          <div class="col-12">
+            <label for="image">Project Image</label>
+            <input type="file" class="form-control" name="image" accept="image/*">
+          </div>
+  
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+  
+        </div>
+      
+      </form>
+  
+    </div>
+  </div>
