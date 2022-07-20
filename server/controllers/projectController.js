@@ -23,7 +23,8 @@ exports.homepage = async(req, res) => {
         const coa = await Project.find({'category': 'COA'}).limit(limitNnumber);
         const DS = await Project.find({'category': 'DS'}).limit(limitNnumber);
         const food = {latest , iot, appDev ,printing , webDev ,coa , DS  };
-        res.render('index' , { title : 'Projecto- Home', categories, food});
+        // res.render('index' , { title : 'Projecto- Home', categories, food});
+        res.json(food)
         
     } catch (error) {
         res.satus(500).send({message: error.message || "Error Occured" });
