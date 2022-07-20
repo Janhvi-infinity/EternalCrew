@@ -27,7 +27,7 @@ exports.homepage = async(req, res) => {
         res.json(food)
         
     } catch (error) {
-        res.satus(500).send({message: error.message || "Error Occured" });
+        res.status(500).send({message: error.message || "Error Occured" });
         
     }  
 }
