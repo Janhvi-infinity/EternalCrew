@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const cors = require('cors')
 
+
 const app = express();
 const port = 3002;
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended : true}));
 app.use(express.static('public'));
 app.use(expressLayouts);
 app.use(cors())
+app.use(express.json())
 
 app.use(cookieParser('CookingBlogSecure'));
 app.use(session({
