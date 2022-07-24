@@ -25,8 +25,8 @@ exports.homepage = async(req, res) => {
         const food = {latest , iot, appDev ,printing , webDev ,coa , DS  };
         const projectsAll = await Project.find()
         // res.render('index' , { title : 'Projecto- Home', categories, food});
-        // res.json({latest,projectsAll})
-        res.json(projectsAll)
+        res.json({latest,projectsAll})
+        // res.json(projectsAll)
         
     } catch (error) {
         res.status(500).send({message: error.message || "Error Occured" });
