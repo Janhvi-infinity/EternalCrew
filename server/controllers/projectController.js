@@ -24,7 +24,7 @@ exports.homepage = async(req, res) => {
         const DS = await Project.find({'category': 'DS'}).limit(limitNnumber);
         const food = {latest , iot, appDev ,printing , webDev ,coa , DS  };
         const projectsAll = await Project.find()
-        // res.render('index' , { title : 'Projecto- Home', categories, food});
+        res.render('index' , { title : 'Projecto- Home', categories, food});
         res.json({latest,projectsAll})
         // res.json(projectsAll)
         
