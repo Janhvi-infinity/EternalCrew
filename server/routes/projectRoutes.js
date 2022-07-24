@@ -10,6 +10,11 @@ router.get('/explore-random', projectController.exploreRandom);
 router.get('/submit-project', projectController.submitProject);
 router.post('/search', projectController.searchProject);
 router.post('/submit-project', projectController.submitProjectOnPost);
+router.get('/registers', projectController.registers);
+router.post('/registers',projectController.registersOnPost);
+router.get('/login', projectController.login);
+router.post('/login', projectController.loginOnPost);
+
 
 
 module.exports = router;

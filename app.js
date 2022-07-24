@@ -4,20 +4,22 @@ const fileUpload = require('express-fileupload');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
-const cors = require('cors')
+//add
 
 
 const app = express();
-const port = 3002;
+const port = process.env.PORT || 3000;
+//add
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 require('dotenv').config();
 
-// middlewares that are used
 app.use(express.urlencoded({ extended : true}));
 app.use(express.static('public'));
 app.use(expressLayouts);
-app.use(cors())
-app.use(express.json())
 
 app.use(cookieParser('CookingBlogSecure'));
 app.use(session({
@@ -35,6 +37,7 @@ app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
 const routes = require('./server/routes/projectRoutes.js')
 app.use('/', routes );
+
 
 app.listen(port, () => {
     console.log(`Listening to port no ${port}`)

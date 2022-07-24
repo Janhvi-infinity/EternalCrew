@@ -2,7 +2,7 @@ require('../models/database');
 const res = require('express/lib/response');
 const Category = require('../models/Category');
 const Project = require('../models/Project');
-
+const Register = require("../models/registers");
 
 /** 
  * GET /
@@ -23,16 +23,14 @@ exports.homepage = async(req, res) => {
         const coa = await Project.find({'category': 'COA'}).limit(limitNnumber);
         const DS = await Project.find({'category': 'DS'}).limit(limitNnumber);
         const food = {latest , iot, appDev ,printing , webDev ,coa , DS  };
-        const projectsAll = await Project.find()
         res.render('index' , { title : 'Projecto- Home', categories, food});
-        res.json({latest,projectsAll})
-        // res.json(projectsAll)
         
     } catch (error) {
-        res.status(500).send({message: error.message || "Error Occured" });
+        res.satus(500).send({message: error.message || "Error Occured" });
         
     }  
 }
+
 
 /** 
  * GET /categories
@@ -130,9 +128,81 @@ exports.exploreRandom = async(req , res) => {
         res.satus(500).send({message: error.message || "Error Occured" });
       }
 }
+/**
+ * GET /
+ * Registration Page
+ */
+ exports.registers = async(req, res) => {
+    const infoErrorsObj = req.flash('infoErrors');
+    const infoSubmitObj = req.flash('infoSubmit');
+    res.render("registers", {title:"registration form", layout: "registers"});
+}
 
+exports.registersOnPost = async(req, res) => {
+    try {
+        const password = req.body.password;
+        const cpassword = req.body.password2;
+  
+        if(password == cpassword){
+  
+            const user = new Register({
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password,
+                password2: req.body.password2
+            })
+  
+            const registerd = await user.save();
+            // req.flash('infoSubmit', 'Project has been added.');
+            
+            return res.render("login", { layout: "login"});;
+            
+        }else{
+            res.send("passwords not matching");
+            
+        }
+    } catch (error) {
+        //res.status(400).send(error);
+        // req.flash('infoErrors', error );
+        // return res.render("kk", { layout: "kk"});
+        res.json(error);
+    }
+}
+/**
+ * Post/registration
+ * end
+ */
 
+/**
+ * GET /login 
+ * Start  
+ */
+exports.login = async(req, res) => {
+    res.render("login", {layout: "login"})
+}
 
+exports.loginOnPost = async(req, res) => {
+    try {
+
+        const email = req.body.email;
+        const password = req.body.password;
+  
+        const useremail = await Register.findOne({email:email});
+  
+        if(useremail.password2 == password){
+            res.redirect('/');
+            
+  
+        }else{
+            res.send("password are not matching");
+        }
+  
+        console.log(`${email} and password is ${password}`)
+  
+    }catch (error) {
+        res.status(400).send("invalid login details")
+    }
+}
 /**
  * GET /submit-project
  * Submit Project
@@ -193,3 +263,183 @@ exports.submitProjectOnPost = async(req, res) => {
   }
   
   
+
+// ['MachineLearning', 'DataScience', 'WebDev', 'AppDev', 'FluidDynamics','ThermoDynamics','MachineDesigning'],
+
+// async function insertDymmyCategoryData(){
+//    try {
+//        await Category.insertMany(
+//         [{
+//                 "name": "IoT",
+//                 "image": "Iot_1.jpg"
+//             },
+//             {
+//                 "name": "DS",
+//                 "image": "DS_1.jpg"
+//             },
+//             {
+//                 "name": "App Devlopment",
+//                 "image": "webDev.png"
+//             },
+//             {
+//                 "name": "Web Devlopment",
+//                 "image": "webDev.png"
+//             },
+//             {
+//                 "name": "COA",
+//                 "image": "COA_1.jpg"
+//             },
+//             {
+//                 "name": "3D Printing",
+//                 "image": "3DP_1.png"
+//             },
+//         ]);
+//    } catch (error) {
+//       console.log('err' , + error) 
+//    } 
+// }
+
+// insertDymmyCategoryData();
+
+
+// async function insertDymmyRecipeData(){
+//    try {
+//        await Project.insertMany([
+//         {
+//             "name": "Movie Recommendation System",
+//             "description": "Recommendation systems are becoming increasingly important in today’s extremely busy world. People are always short on time with the myriad tasks they need to accomplish in the limited 24 hours. Therefore, the recommendation systems are important as they help them make the right choices, without having to expend their cognitive resources.",
+//             "email": "devvv@gmail.com",
+//             "technology": [ "Collaborative filtering ", "Memory-based Algorithm "
+    
+//             ],
+//             "domain": "Hardware",
+//             "category":  'Web Devlopment',
+//             "image": "ML.png",
+            
+    
+//         },
+    
+//         {
+//             "name": " Diesses Detection ",
+//             "description": "Recommendation systems are becoming increasingly important in today’s extremely busy world. People are always short on time with the myriad tasks they need to accomplish in the limited 24 hours. Therefore, the recommendation systems are important as they help them make the right choices, without having to expend their cognitive resources.",
+//             "email": "devvv@gmail.com",
+//             "technology": [ "image prossecing ", "Memory-based Algorithm "],
+//             "domain": "Hardware",
+//             "category": 'COA' ,
+//             "image": "iot.jpg",
+            
+    
+//         },
+    
+//         {
+//             "name": " Blog website ",
+//             "description": "Recommendation systems are becoming increasingly important in today’s extremely busy world. People are always short on time with the myriad tasks they need to accomplish in the limited 24 hours. Therefore, the recommendation systems are important as they help them make the right choices, without having to expend their cognitive resources.",
+//             "email": "devvv@gmail.com",
+//             "technology": [ "image prossecing ", "Memory-based Algorithm "],
+//             "domain": "Hardware",
+//             "category":  '3D Printing',
+//             "image": "iot.jpg",
+            
+    
+//         },
+    
+        
+//         {
+//             "name": " Design Of Airfoil ",
+//             "description": "Recommendation systems are becoming increasingly important in today’s extremely busy world. People are always short on time with the myriad tasks they need to accomplish in the limited 24 hours. Therefore, the recommendation systems are important as they help them make the right choices, without having to expend their cognitive resources.",
+//             "email": "devvv@gmail.com",
+//             "technology": [ "image prossecing ", "Memory-based Algorithm "],
+//             "domain": "Hardware",
+//             "category":  'App Devlopment' ,
+//             "image": "iot.jpg",
+            
+    
+//         },
+        
+    
+        
+//         {
+//             "name": " Themperature Sink ",
+//             "description": "Recommendation systems are becoming increasingly important in today’s extremely busy world. People are always short on time with the myriad tasks they need to accomplish in the limited 24 hours. Therefore, the recommendation systems are important as they help them make the right choices, without having to expend their cognitive resources.",
+//             "email": "devvv@gmail.com",
+//             "technology": [ "image prossecing ", "Memory-based Algorithm "],
+//             "domain": "Hardware",
+//             "category": 'IoT',
+//             "image": "iot.jpg",
+            
+    
+//         },
+    
+        
+//         {
+//             "name": " Staires Climbing Wheel",
+//             "description": "Recommendation systems are becoming increasingly important in today’s extremely busy world. People are always short on time with the myriad tasks they need to accomplish in the limited 24 hours. Therefore, the recommendation systems are important as they help them make the right choices, without having to expend their cognitive resources.",
+//             "email": "devvv@gmail.com",
+//             "technology": [ "image prossecing ", "Memory-based Algorithm "],
+//             "domain": "Hardware",
+//             "category": 'IoT',
+//             "image": "iot.jpg",
+            
+    
+//         },
+    
+//         {
+//             "name": "Can And Follower",
+//             "description": "Recommendation systems are becoming increasingly important in today’s extremely busy world. People are always short on time with the myriad tasks they need to accomplish in the limited 24 hours. Therefore, the recommendation systems are important as they help them make the right choices, without having to expend their cognitive resources.",
+//             "email": "devvv@gmail.com",
+//             "technology": [ "image prossecing ", "Memory-based Algorithm "],
+//             "domain": "Hardware",
+//             "category": 'IoT',
+//             "image": "iot.jpg",
+            
+    
+//         },
+//         {
+//             "name": " Clutch Design",
+//             "description": "Recommendation systems are becoming increasingly important in today’s extremely busy world. People are always short on time with the myriad tasks they need to accomplish in the limited 24 hours. Therefore, the recommendation systems are important as they help them make the right choices, without having to expend their cognitive resources.",
+//             "email": "devvv@gmail.com",
+//             "technology": [ "image prossecing ", "Memory-based Algorithm "],
+//             "domain": "Hardware",
+//             "category": 'App Devlopment',
+//             "image": "iot.jpg",
+            
+    
+//         },
+//         {
+//             "name": "Crank Shaft",
+//             "description": "Recommendation systems are becoming increasingly important in today’s extremely busy world. People are always short on time with the myriad tasks they need to accomplish in the limited 24 hours. Therefore, the recommendation systems are important as they help them make the right choices, without having to expend their cognitive resources.",
+//             "email": "devvv@gmail.com",
+//             "technology": [ "image prossecing ", "Memory-based Algorithm "],
+//             "domain": "Hardware",
+//             "category":'App Devlopment',
+//             "image": "iot.jpg",
+            
+    
+//         },
+    
+//         {
+//             "name": " News website ",
+//             "description": "Recommendation systems are becoming increasingly important in today’s extremely busy world. People are always short on time with the myriad tasks they need to accomplish in the limited 24 hours. Therefore, the recommendation systems are important as they help them make the right choices, without having to expend their cognitive resources.",
+//             "email": "devvv@gmail.com",
+//             "technology": [ "image prossecing ", "Memory-based Algorithm "],
+//             "domain": "Hardware",
+//             "category": 'App Devlopment',
+//             "image": "iot.jpg",
+            
+    
+//         },
+    
+    
+//     ]);
+//    } catch (error) {
+//       console.log('err' , + error) 
+//    } 
+// }
+
+// insertDymmyRecipeData();
+
+// 'Machine Learning', 'Data Science', 'Web Dev', 'App Dev', 'Fluid Dynamics','Thermo Dynamics','Machine Designing'
+
+
+
+// 'App_Dev', 'Fluid_Dynamics','Thermo_Dynamics','Machine_Designing'
