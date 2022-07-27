@@ -1,0 +1,255 @@
+<!-- // ['MachineLearning', 'DataScience', 'WebDev', 'AppDev', 'FluidDynamics','ThermoDynamics','MachineDesigning'], -->
+
+
+<div class="row flex-lg-row-reverse align-items-center g-5 py-4 mb-4">
+    <div class="col-12 col-lg-6">
+        <img src="/img/front_2.png" width="607" height="510" class="d-block mx-lg-auto img-fluid" loading=" lazy" alt="Iot Project">
+
+    </div>
+    <div class="col-12 col-lg-6">
+        <h1 class="display-5 fw-bold mb-3">
+            Let us showcase your talent!
+            <br> 
+            <br>
+
+        </h1>
+        <p class="lead">
+           We value you interest into innovation! <br>
+           
+          You work hard on your projects, we will make sure to give them recognition <br>
+          Over than 100 colleges are connected with us and share their projects.
+        </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="/explore-latest" class="btn btn-primary btn-dark btn-lg px-4 me-md-2">Explore Latest</a>
+            <a href="/explore-random" class="btn btn-outline-secondary btn-lg px-4 me-md-2">Show Randome</a>
+        </div>
+    </div>
+</div>
+
+<!-- Categories Start -->
+
+<div class="row row-cols-lg-6 g-2 g-lg-3 py-4">
+<% if( categories != '') { %>
+    <% categories.forEach(function(category, index){ %>
+    <a href="/categories/ <%- category.name %>" class="col text-center category_link">
+        <div class="category_img shadow">
+            <img src="img/<%- category.image %>" alt="<%- category.name %>" loading="'lazy" >
+        </div>
+        <div class="pt-1"><%- category.name %></div>
+    </a>
+    <% }) %>
+  <% } %>
+
+
+<a href="/categories" class="col text-center category_link">
+    <div class="category_img shadow">
+        <img src="img/iot.jpg" alt="Iot Projects" loading="'lazy" >
+    </div>
+    <div class="pt-1">View All</div>
+</a>
+</div>
+<!-- Categere end-->
+
+<!-- Latest Start-->
+<section class="pb-4 pt-4">
+    <div class="d-flex md-2 align-items-center">
+        <h2> Latest Project</h2>
+        <a href="/explore-latest" class="ms-auto">View More</a>
+    </div>
+
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 ">
+
+        <% if(food != ''){ %>
+            <% food.latest.forEach(function(recipe, index){ %> 
+                <a href="/project/<%= recipe._id %>" class="col text-center category_link">
+                    <div class="category_img category_img--large shadow">
+                        <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="'lazy" >
+                    </div>
+                    <div class="pt-1"><%= recipe.name %></div>
+                </a> 
+         <% }) %>
+         <% } else { %>  
+            <p>No Project Found. </p>
+            <% } %> 
+    </div>
+
+</section>
+<!-- Latest End-->
+
+<!-- Iot Start-->
+<section class="pb-4 pt-4">
+    <div class="d-flex md-2 align-items-center">
+        <h2>Iot Project</h2>
+        <a href="/categories/IoT" class="ms-auto">View More</a>
+    </div>
+
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 ">
+
+        <% if(food.iot !== '' ){ %>
+            <% food.iot.forEach(function(recipe, index){ %>
+                
+                <a href="/project/<%= recipe._id %>" class="col text-center category_link">
+                    <div class="category_img category_img--large shadow">
+                        <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="'lazy" >
+                    </div>
+                    <div class="pt-1"><%= recipe.name %></div>
+                </a> 
+         <% }) %>
+        <% } else { %>  
+            <p>No Project Found. </p>
+            <% } %>
+    </div>
+
+</section>
+
+<!--App Devlopment Start-->
+<section class="pb-4 pt-4">
+    <div class="d-flex md-2 align-items-center">
+        <h2>App Devlopment Project</h2>
+        <a href="/categories/App Devlopment" class="ms-auto">View More</a>
+    </div>
+
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 ">
+
+        <% if(food.appDev !== ''){ %>
+            <% food.appDev.forEach(function(recipe, index){  %>
+                
+                <a href="/project/<%= recipe._id %>" class="col text-center category_link">
+                    <div class="category_img category_img--large shadow">
+                        <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="'lazy" >
+                    </div>
+                    <div class="pt-1"><%= recipe.name %></div>
+                </a> 
+         <% }) %>
+        <% } else { %>  
+            <p>No Project Found. </p>
+            <% } %>
+        </div>
+</section>
+
+<!--APPDevlopment  End-->
+
+<!--3D Printing Start-->
+<section class="pb-4 pt-4">
+    <div class="d-flex md-2 align-items-center">
+        <h2>3D Printing Project</h2>
+        <a href="/categories/3D Printing" class="ms-auto">View More</a>
+    </div>
+
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 ">
+
+        <% if(food.printing !== '' ){ %>
+            <% food.printing.forEach(function(recipe, index){  %>
+                
+                <a href="/project/<%= recipe._id %>" class="col text-center category_link">
+                    <div class="category_img category_img--large shadow">
+                        <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="'lazy" >
+                    </div>
+                    <div class="pt-1"><%= recipe.name %></div>
+                </a> 
+         <% }) %>
+        <% } else { %>  
+            <p>No Project Found. </p>
+            <% } %>
+        </div>
+</section>
+
+<!--3D Printing End-->
+
+<!--WebDevlopment Start-->
+<section class="pb-4 pt-4">
+    <div class="d-flex md-2 align-items-center">
+        <h2>WebDevlopment Project</h2>
+        <a href="/categories/Web Devlopment" class="ms-auto">View More</a>
+    </div>
+
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 ">
+
+        <% if(food.webDev !== ''  ){ %>
+            <% food.webDev.forEach(function(recipe, index){  %>
+                
+                <a href="/project/<%= recipe._id %>" class="col text-center category_link">
+                    <div class="category_img category_img--large shadow">
+                        <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="'lazy" >
+                    </div>
+                    <div class="pt-1"><%= recipe.name %></div>
+                </a> 
+         <% }) %>
+        <% } else { %>  
+            <p>No Project Found. </p>
+            <% } %>
+        </div>
+</section>
+
+<!--WebDevlopment End-->
+
+<!--COA Start-->
+<section class="pb-4 pt-4">
+    <div class="d-flex md-2 align-items-center">
+        <h2>COA Project</h2>
+        <a href="/categories/COA" class="ms-auto">View More</a>
+    </div>
+
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 ">
+
+        <% if(food.coa !== ''){ %>
+            <% food.coa.forEach(function(recipe, index){  %>
+                
+                <a href="/project/<%= recipe._id %>" class="col text-center category_link">
+                    <div class="category_img category_img--large shadow">
+                        <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="'lazy" >
+                    </div>
+                    <div class="pt-1"><%= recipe.name %></div>
+                </a> 
+         <% }) %>
+        <% } else { %>  
+            <p>No Project Found. </p>
+            <% } %>
+        </div>
+</section>
+
+<!--COA End-->
+
+<!--DS Start-->
+<section class="pb-4 pt-4">
+    <div class="d-flex md-2 align-items-center">
+        <h2>DS Project</h2>
+        <a href="/categories/DS" class="ms-auto">View More</a>
+    </div>
+
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 ">
+
+        <% if(food.DS !== ''){ %>
+            <% food.DS.forEach(function(recipe, index){  %>
+                
+                <a href="/project/<%= recipe._id %>" class="col text-center category_link">
+                    <div class="category_img category_img--large shadow">
+                        <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="'lazy" >
+                    </div>
+                    <div class="pt-1"><%= recipe.name %></div>
+                </a> 
+         <% }) %>
+        <% } else { %>  
+            <p>No Project Found. </p>
+            <% } %>
+        </div>
+</section>
+
+<!--DS End-->
+
+
+
+
+
+<!-- Submit Section Start-->
+<section class="px-4 py-5 my-5 text-center">
+    <img src="/img/publish" alt="Publish your Project for Free " width="566" height="208" loading="lazy">
+    <h1 class="display-5 fw-bold">Publish Your Projects</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Publish Your Projects in front of thousands of people for Free</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="/submit-project" class="btn btn-primary btn-dark btn-lg">Upload Projects</a>
+        </div>
+    </div>
+</section>
+<!-- Submit Section End -->

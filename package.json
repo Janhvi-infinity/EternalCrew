@@ -1,0 +1,37 @@
+{
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-fileupload": "^1.4.0",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.8.0",
+    "mongoose": "^6.4.4",
+    "nodemon": "^2.0.19"
+  },
+  "name": "eternal_crew",
+  "description": "",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js -e js, ejs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Janhvi-infinity/Eternal_Crew.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Janhvi-infinity/Eternal_Crew/issues"
+  },
+  "homepage": "https://github.com/Janhvi-infinity/Eternal_Crew#readme"
+}

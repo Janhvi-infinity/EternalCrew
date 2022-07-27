@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Institute Registration</title>
+</head>
+<body>
+    <section class="vh-80 bg-image">
+  <div class="mask d-flex align-items-center h-90 gradient-custom-3">
+    <div class="container py-5 h-90">
+      <div class="row d-flex justify-content-center align-items-center h-80">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Institute Registration</h2>
+
+              <form action="/institute_reg" method ="POST">
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="institutename" />
+                  <label class="form-label" for="form3Example1cg">Institute Name</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example3cg" class="form-control form-control-lg" name="institutecode"/>
+                  <label class="form-label" for="form3Example3cg">Institute Code</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example3cg" class="form-control form-control-lg" name="universityname"/>
+                  <label class="form-label" for="form3Example3cg">University Name</label>
+                </div>
+
+                <div class="col-12">
+                  <label for="domain">Select Course</label>
+                  <select class="form-select form-control" name="course" aria-label="Category">
+                    <option selected>Select Course</option>
+                    <option value="course1">Course 1</option>
+                    <option value="course2">Course 2</option>
+                    <option value="course3">Course 3</option>
+                  </select>
+                </div>
+
+                  <div class="form-outline mb-4 py-3">
+                    <input type="text" id="form3Example3cg" class="form-control form-control-lg" name="address"/>
+                    <label class="form-label" for="form3Example3cg">Address</label>
+                  </div>
+                  <div class="form-outline mb-4 py-3">
+                    <div class="col-12">
+                      <label for="domain">Select State</label>
+                      <select class="form-select form-control" name="state" aria-label="Category">
+                        <option selected>Select State</option>
+                        <option value="state1">State 1</option>
+                        <option value="state2">State 2</option>
+                        <option value="state3">State 3</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label for="domain">Select City</label>
+                      <select class="form-select form-control" name="city" aria-label="Category">
+                        <option selected>Select City</option>
+                        <option value="city1">City 1</option>
+                        <option value="city2">City 2</option>
+                        <option value="city3">City 3</option>
+                      </select>
+                    </div>
+                </div>
+                  <div class="form-outline mb-4">
+                    <input type="text" id="form3Example4cg" class="form-control form-control-lg" name="pincode"/>
+                    <label class="form-label" for="form3Example4cg">Pincode</label>
+                  </div>
+
+                  <div class="form-outline mb-4 py-3">
+                    <input type="email" id="form3Example3cg" class="form-control form-control-lg" name="email"/>
+                    <label class="form-label" for="form3Example3cg">E-mail</label>
+                  </div>
+
+                <div class="form-outline mb-3">
+                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" name="password"/>
+                  <label class="form-label" for="form3Example4cg">Password</label>
+                </div>
+
+                <div class="form-outline mb-3">
+                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" name="password2" />
+                  <label class="form-label" for="form3Example4cdg">Confirm your password</label>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit" 
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/institute_log"
+                    class="fw-bold text-body"><u>Login here</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
