@@ -17,26 +17,16 @@ const employeeSchema = new Schema({
         type:String,
         required:true
     },
-    password2 : {
-        type: String,
-        required:true
-    }, 
-    tokens : [{
-        token:{
-            type: String,
-            required:true
-        }
-    }]
-
 });
 
-// //token generation
+//token generation
 employeeSchema.methods.generateAuthToken = async function(){
     try {
         const token = jwt.sign({_id:this._id.toString()}, process.env.SECRET_KEY);
+        // * not saving the token inside the DB
         //console.log(token);
-        this.tokens = this.tokens.concat({token:token});
-        await this.save();
+        // this.tokens = this.tokens.concat({token:token});
+        // await this.save();
         return token;
 
     } catch (error){
@@ -50,15 +40,13 @@ employeeSchema.methods.generateAuthToken = async function(){
 employeeSchema.pre("save", async function(next) {
     
     if(this.isModified("password")){
-        this.password = await bcrypt.hash(this.password, 10);
-
-        // this.password2 = undefined;
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
     }
-
     next();
 })
 
-// now we need to create a collection
+
 
 // const Register = new mongoose.model("Table1", employeeSchema);
 module.exports = mongoose.model('register', employeeSchema );

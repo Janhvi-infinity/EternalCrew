@@ -5,12 +5,13 @@ const fileUpload = require('express-fileupload');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
+const bcrypt = require("bcryptjs");
 //add
 const Register = require("./server/models/registers");
 const Institute_reg = require("./server/models/insti_reg");
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 //add
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -58,24 +59,22 @@ app.post("/register", async (req,res) => {
       const cpassword = req.body.password2;
 
       if(password == cpassword){
-
           const user = new Register({
               username: req.body.username,
               email: req.body.email,
               password: req.body.password,
-              password2: req.body.password2
           })
 
            //JWT part
            //console.log("the success part" + user);
 
-           const token = await user.generateAuthToken();
-           //console.log(user);
-           //console.log("the token part " + token);
+          const token = await user.generateAuthToken();
+          //  console.log(user);
+          //  console.log("the token part " + token);
 
           //const registerd = await user.save();
 
-          let saveUser = await user.save(); //when fail its goes to catch
+          await user.save(); //when fail its goes to catch
           //console.log(saveUser); //when success it print.
           console.log('Saved ! ');
           // await user.save();
@@ -100,13 +99,14 @@ app.post("/login", async (req,res) => {
       const useremail = await Register.findOne({email:email});
 
        // middleware jwt token
-       const token = await useremail.generateAuthToken();
-       //console.log("the token part login " + token);
-       //res.cookie("jwt", token);
+      const token = await useremail.generateAuthToken();
+      //  console.log("the token part login " + token);
+      //res.cookie("jwt", token);
 
-      if(useremail.password2 == password){
-          res.status(201).render("kk", {layout: "kk"});
-
+      let passwordCompared = await bcrypt.compare(password,useremail.password)
+      if(passwordCompared){
+          // res.status(201).render("kk", {layout: "kk"});
+          res.json(token);
       }else{
           res.send("password are not matching");
       }
@@ -114,6 +114,7 @@ app.post("/login", async (req,res) => {
       //console.log(`${email} and password is ${password}`)
 
   }catch (error) {
+      console.log(error)
       res.status(400).send("invalid login details")
   }
 })
