@@ -6,7 +6,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const bcrypt = require("bcryptjs");
-const cors  = reqire('cors')
+const cors  = require('cors')
 //add
 const Register = require("./server/models/registers");
 const Institute_reg = require("./server/models/insti_reg");
