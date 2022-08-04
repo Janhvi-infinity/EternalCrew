@@ -24,8 +24,8 @@ exports.homepage = async(req, res) => {
         const DS = await Project.find({'category': 'DS'}).limit(limitNnumber);
         const food = {latest , iot, appDev ,printing , webDev ,coa , DS  };
         const projectsAll = await Project.find()
-        res.render('index' , { title : 'Projecto- Home', categories, food});
         res.json({latest,projectsAll})
+        // res.render('index' , { title : 'Projecto- Home', categories, food});
         // res.json(projectsAll)
         
     } catch (error) {
@@ -94,7 +94,7 @@ exports.exploreProject = async(req, res) => {
     try {
         let searchTerm = req.body.searchTerm;
         let project = await Project.find( { $text: { $search: searchTerm, $diacriticSensitive: true}} );
-        res.render('search' , {title: 'Projecto-Search' ,project  });
+        // res.render('search' , {title: 'Projecto-Search' ,project  });
         res.json(project);
     } catch (error) {
         res.send({message: error.message || "Error Occured" });
@@ -109,7 +109,8 @@ exports.exploreLatest = async(req, res) => {
     try {
         const limitNumber = 20;
         const project = await Project.find({}).sort({ _id: -1 }).limit(limitNumber);
-        res.render('explore-latest', { title: 'Cooking Blog - Explore Latest', project } );
+        // res.render('explore-latest', { title: 'Cooking Blog - Explore Latest', project } );
+        res.json(project);
       } catch (error) {
         res.satus(500).send({message: error.message || "Error Occured" });
       }
