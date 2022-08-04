@@ -6,6 +6,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const bcrypt = require("bcryptjs");
+const cors  = reqire('cors')
 //add
 const Register = require("./server/models/registers");
 const Institute_reg = require("./server/models/insti_reg");
@@ -17,6 +18,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+app.use(cors());
 
 require('dotenv').config();
 
